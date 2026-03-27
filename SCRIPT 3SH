@@ -1,0 +1,37 @@
+#!/bin/bash
+# Script 3: Disk and Permission Auditor
+# Author: A. KAMAL SIDDARTHA  (24BAI10185)
+# Software: Linux Kernel
+
+# [span_6](start_span)List of important system directories to audit[span_6](end_span)
+DIRS=("/etc" "/var/log" "/home" "/usr/bin" "/tmp")
+
+echo "=========================================="
+echo "       Directory Audit Report"
+echo "=========================================="
+
+# [span_7](start_span)[span_8](start_span)Loop through each directory in the list[span_7](end_span)[span_8](end_span)
+for DIR in "${DIRS[@]}"; do
+    if [ -d "$DIR" ]; then
+        # [span_9](start_span)Extract permissions, owner, and group[span_9](end_span)
+        PERMS=$(ls -ld "$DIR" | awk '{print $1, $3, $4}')
+        
+        # [span_10](start_span)Calculate size of the directory[span_10](end_span)
+        SIZE=$(du -sh "$DIR" 2>/dev/null | cut -f1)
+        
+        echo "DIR: $DIR"
+        echo " -> Permissions/Owner: $PERMS"
+        echo " -> Current Size     : $SIZE"
+        echo "------------------------------------------"
+    else
+        [span_11](start_span)echo "Warning: $DIR does not exist on this system."[span_11](end_span)
+    fi
+done
+
+# [span_12](start_span)TODO: Audit the kernel configuration directory if it exists[span_12](end_span)
+KDIR="/usr/src/kernels"
+if [ -d "$KDIR" ]; then
+    echo "Kernel Source Directory Found: $KDIR"
+    ls -ld "$KDIR" | awk '{print "Permissions: " $1 " | Owner: " $3}'
+fi
+echo "=========================================="

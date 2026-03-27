@@ -1,0 +1,34 @@
+#!/bin/bash
+# Script 2: FOSS Package Inspector
+# Author: A.KAMAL SIDDARTHA (24BAI10185)
+# Software: Linux Kernel
+
+# The kernel itself isn't a typical "package," so we check for kernel headers or tools
+PACKAGE="kernel-devel" 
+
+echo "Checking installation status for: $PACKAGE"
+echo "------------------------------------------"
+
+# Check if package is installed (works for RPM-based systems like Fedora/CentOS)
+# For Ubuntu/Debian, you would use: dpkg -l $PACKAGE
+if rpm -q $PACKAGE &>/dev/null; then
+    echo "Status: $PACKAGE is installed."
+    [span_4](start_span)rpm -qi $PACKAGE | grep -E 'Version|License|Summary'[span_4](end_span)
+else
+    echo "Status: $PACKAGE is NOT installed."
+    echo "Tip: You can install it using 'sudo dnf install $PACKAGE'"
+fi
+
+echo "------------------------------------------"
+
+# [span_5](start_span)[span_6](start_span)Case statement for philosophy notes[span_5](end_span)[span_6](end_span)
+case $PACKAGE in
+    "kernel-devel")
+        echo "Philosophy: The Linux Kernel is the heart of open-source, providing the bridge between hardware and human intent." ;;
+    "httpd")
+        [span_7](start_span)echo "Philosophy: Apache: the web server that built the open internet."[span_7](end_span);;
+    "mysql")
+        [span_8](start_span)echo "Philosophy: MySQL: open source at the heart of millions of apps."[span_8](end_span);;
+    *)
+        echo "Philosophy: Open source software empowers users through transparency and collaboration." ;;
+esac

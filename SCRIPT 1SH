@@ -1,0 +1,34 @@
+#!/bin/bash
+# Script 1: System Identity Report
+# Author: [Your Name]
+# Course: Open Source Software
+# Software Choice: Linux Kernel
+
+# --- Variables ---
+STUDENT_NAME="[A.KAMAL SIDDARTHA (24BAI10185)]"
+REG_NO="24MIP10171"
+SOFTWARE_CHOICE="Linux Kernel"
+
+# --- System Info Gathering ---
+KERNEL=$(uname -r)
+USER_NAME=$(whoami)
+UPTIME=$(uptime -p)
+DISTRO=$(cat /etc/os-release | grep "PRETTY_NAME" | cut -d '"' -f 2)
+CURRENT_DATE=$(date)
+
+# --- Display ---
+echo "=========================================="
+echo "         Open Source Audit"
+echo "=========================================="
+echo "Student Name : $STUDENT_NAME"
+echo "Reg Number   : $REG_NO"
+echo "Software     : $SOFTWARE_CHOICE"
+echo "------------------------------------------"
+echo "OS Distro    : $DISTRO"
+echo "Kernel Ver   : $KERNEL"
+echo "Current User : $USER_NAME"
+echo "System Uptime: $UPTIME"
+echo "Current Date : $CURRENT_DATE"
+echo "------------------------------------------"
+echo "Note: This OS is covered by the GNU General Public License (GPL)."
+echo "=========================================="
